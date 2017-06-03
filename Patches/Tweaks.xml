@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 2009 - the last FREE Community Edition 7.0.2.746 -->
+<Patch>
+    <!-- Set vanilla shelves to start with nothing allowed in storage when first constructed -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>*/ThingDef[defName = "Shelf"]/building/defaultStorageSettings/filter</xpath>
+        <value>
+            <filter>
+                <categories>
+                </categories>
+            </filter>
+        </value>
+    </Operation>
+    
+    <!-- Set Cassandra storyteller to allow large populations -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>*/StorytellerDef[defName = "Cassandra"]/populationIntentFromPopCurve</xpath>
+        <value>
+            <populationIntentFromPopCurve>
+                <points>
+                    <li> 0, 12</li>
+                    <li> 6,  8</li>
+                    <li>12,  6</li>
+                    <li>18,  2</li>
+                    <li>24,  0</li>
+                    <li>36, -2</li>
+                    <li>50, -5</li>
+                </points>
+            </populationIntentFromPopCurve>            
+		</value>
+	</Operation>
+</Patch>
