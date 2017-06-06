@@ -6,13 +6,20 @@
         <xpath>*/ThingDef[defName = "Shelf"]/building/defaultStorageSettings/filter</xpath>
         <value>
             <filter>
-                <categories>
-                </categories>
+                <categories/>
             </filter>
         </value>
     </Operation>
     
-    <!-- Set Cassandra storyteller to allow large populations -->
+    <!-- "Allow Rotten" container behavior set to default of false -->
+    <Operation Class="PatchOperationReplace">
+        <xpath>*/SpecialThingFilterDef[defName = "AllowRotten"]/allowedByDefault</xpath>
+        <value>
+            <allowedByDefault>false</allowedByDefault>
+		</value>
+	</Operation>
+    
+    <!-- Set Cassandra storyteller to allow larger populations of about two to four dozen colonists -->
     <Operation Class="PatchOperationReplace">
         <xpath>*/StorytellerDef[defName = "Cassandra"]/populationIntentFromPopCurve</xpath>
         <value>

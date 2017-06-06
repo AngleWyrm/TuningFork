@@ -7,6 +7,7 @@
     <description>Game and mod tweaks that I enjoy
 
         &lt;b&gt;Shelves&lt;/b&gt; - Set vanilla shelves to nothing allowed in storage when first constructed
+        &lt;b&gt;Allow Rotten&lt;/b&gt; - set behavior default to false for newly constructed containers
         &lt;b&gt;Cassandra&lt;/b&gt; - Bump up her desired population curve to around two to four dozen colonists
     </description>
 </ModMetaData>
