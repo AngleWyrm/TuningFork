@@ -21,12 +21,27 @@
 	</Operation>
     
     <!-- For food that can be eaten at a table, increase the search radius to find somewhere to sit when eating -->
-    <Operation Class="PatchOperationReplace">
+    <Operation Class="PatchOperationReplace"> <!-- update records that already have a chairSearchRadius -->
         <xpath>*/ThingDef[@Abstract="True"]/ingestible/chairSearchRadius</xpath>
         <value>
-            <chairSearchRadius>32</chairSearchRadius> <!-- 32 tiles -->
+            <chairSearchRadius>50</chairSearchRadius> <!-- 50 tiles -->
 		</value>
 	</Operation>
+    <Operation Class="PatchOperationSequence"> <!-- update records that don't have a chairSearchRadius -->
+        <success>Always</success>
+        <operations>
+            <li Class="PatchOperationTest">
+                <xpath>*/ThingDef[@Abstract="True"]/ingestible/chairSearchRadius</xpath>
+                <success>Invert</success>
+            </li>
+            <li Class="PatchOperationAdd">
+                <xpath>*/ThingDef[@Abstract="True"]/ingestible</xpath>
+                <value>
+                    <chairSearchRadius>50</chairSearchRadius> <!-- 50 tiles -->
+                </value>
+            </li>
+        </operations>
+    </Operation>    
     
     <!-- Set Cassandra storyteller to allow larger populations of about two to four dozen colonists -->
     <Operation Class="PatchOperationReplace">
