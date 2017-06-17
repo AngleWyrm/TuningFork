@@ -40,8 +40,15 @@
                     <chairSearchRadius>50</chairSearchRadius> <!-- 50 tiles -->
                 </value>
             </li>
+            <!-- patch for RimRue's Packed Lunch mod, so they can be eaten without a chair -->
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/ThingDef[@Name="LunchMealBase"]/ingestible/chairSearchRadius</xpath>
+                <value>
+                    <chairSearchRadius>1</chairSearchRadius>
+				</value>
+			</li>
         </operations>
-    </Operation>    
+    </Operation>
     
     <!-- Set Cassandra storyteller to allow larger populations of about two to four dozen colonists -->
     <Operation Class="PatchOperationReplace">
