@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Created with Liquid XML Studio 2009 - the last FREE Community Edition 7.0.2.746 -->
 <Patch>
-    
-    <!-- Set vanilla shelves to start with nothing allowed in storage when first constructed -->
+    <!-- ========================================================================================== 
+        Set vanilla shelves to start with nothing allowed in storage when first constructed 
+    -->
     <Operation Class="PatchOperationReplace">
         <xpath>*/ThingDef[defName = "Shelf"]/building/defaultStorageSettings/filter</xpath>
         <value>
@@ -12,7 +13,9 @@
         </value>
     </Operation>
     
-    <!-- "Allow Rotten" container behavior set to default of false -->
+    <!-- ==========================================================================================
+        "Allow Rotten" container behavior set to default of false 
+    -->
     <Operation Class="PatchOperationReplace">
         <xpath>*/SpecialThingFilterDef[defName = "AllowRotten"]/allowedByDefault</xpath>
         <value>
@@ -20,14 +23,21 @@
 		</value>
 	</Operation>
     
-    <!-- For food that can be eaten at a table, increase the search radius to find somewhere to sit when eating -->
+    <!-- ==========================================================================================
+        For food that can be eaten at a table, 
+        increase the search radius to find somewhere to sit when eating 
+        
+        TODO: Update medicine & drug records so they have a short walk distance, maybe 5 tiles
+    -->
     <Operation Class="PatchOperationReplace"> <!-- update records that already have a chairSearchRadius -->
         <xpath>*/ThingDef[@Abstract="True"]/ingestible/chairSearchRadius</xpath>
         <value>
             <chairSearchRadius>50</chairSearchRadius> <!-- 50 tiles -->
 		</value>
 	</Operation>
-    <Operation Class="PatchOperationSequence"> <!-- update records that don't have a chairSearchRadius -->
+    
+    <!-- update abstract ingestible records that don't have a chairSearchRadius -->
+    <Operation Class="PatchOperationSequence">
         <success>Always</success>
         <operations>
             <li Class="PatchOperationTest">
@@ -40,17 +50,23 @@
                     <chairSearchRadius>50</chairSearchRadius> <!-- 50 tiles -->
                 </value>
             </li>
-            <!-- patch for RimRue's Packed Lunch mod, so they can be eaten without a chair -->
-            <li Class="PatchOperationReplace">
-                <xpath>/Defs/ThingDef[@Name="LunchMealBase"]/ingestible/chairSearchRadius</xpath>
-                <value>
-                    <chairSearchRadius>1</chairSearchRadius>
-				</value>
-			</li>
         </operations>
     </Operation>
     
-    <!-- Set Cassandra storyteller to allow larger populations of about two to four dozen colonists -->
+    <!-- compatibility patch for RimRue's Packed Lunch mod, so they can be eaten without a chair 
+        TODO: Investigate a way to copy the value used in that mod instead of imposing a constant 
+    -->    
+    <Operation Class="PatchOperationReplace">
+        <success>Always</success>
+       <xpath>/Defs/ThingDef[@Name="LunchMealBase"]/ingestible/chairSearchRadius</xpath>
+       <value>
+           <chairSearchRadius>1</chairSearchRadius>
+       </value>
+    </Operation>
+    
+    <!-- ==========================================================================================
+        Set Cassandra storyteller to allow larger populations of about two to four dozen colonists 
+    -->
     <Operation Class="PatchOperationReplace">
         <xpath>*/StorytellerDef[defName = "Cassandra"]/populationIntentFromPopCurve</xpath>
         <value>
