@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio - FREE Community Edition 7.0.2.746 (http://www.liquid-technologies.com) -->
 <!-- Created with Liquid XML Studio 2009 - the last FREE Community Edition 7.0.2.746 -->
 <Patch>
     <!-- ========================================================================================== 
@@ -8,11 +9,10 @@
         <xpath>*/ThingDef[defName = "Shelf"]/building/defaultStorageSettings/filter</xpath>
         <value>
             <filter>
-                <categories/>
+                <categories />
             </filter>
         </value>
     </Operation>
-    
     <!-- ==========================================================================================
         "Allow Rotten" container behavior set to default of false 
     -->
@@ -20,22 +20,22 @@
         <xpath>*/SpecialThingFilterDef[defName = "AllowRotten"]/allowedByDefault</xpath>
         <value>
             <allowedByDefault>false</allowedByDefault>
-		</value>
-	</Operation>
-    
+        </value>
+    </Operation>
     <!-- ==========================================================================================
         For food that can be eaten at a table, 
         increase the search radius to find somewhere to sit when eating 
         
         TODO: Update medicine & drug records so they have a short walk distance, maybe 5 tiles
     -->
-    <Operation Class="PatchOperationReplace"> <!-- update records that already have a chairSearchRadius -->
+    <Operation Class="PatchOperationReplace">
+        <!-- update records that already have a chairSearchRadius -->
         <xpath>*/ThingDef[@Abstract="True"]/ingestible/chairSearchRadius</xpath>
         <value>
-            <chairSearchRadius>50</chairSearchRadius> <!-- 50 tiles -->
-		</value>
-	</Operation>
-    
+            <chairSearchRadius>50</chairSearchRadius>
+            <!-- 50 tiles -->
+        </value>
+    </Operation>
     <!-- update abstract ingestible records that don't have a chairSearchRadius -->
     <Operation Class="PatchOperationSequence">
         <success>Always</success>
@@ -47,23 +47,22 @@
             <li Class="PatchOperationAdd">
                 <xpath>*/ThingDef[@Abstract="True"]/ingestible</xpath>
                 <value>
-                    <chairSearchRadius>50</chairSearchRadius> <!-- 50 tiles -->
+                    <chairSearchRadius>50</chairSearchRadius>
+                    <!-- 50 tiles -->
                 </value>
             </li>
         </operations>
     </Operation>
-    
     <!-- compatibility patch for RimRue's Packed Lunch mod, so they can be eaten without a chair 
         TODO: Investigate a way to copy the value used in that mod instead of imposing a constant 
-    -->    
+    -->
     <Operation Class="PatchOperationReplace">
         <success>Always</success>
-       <xpath>/Defs/ThingDef[@Name="LunchMealBase"]/ingestible/chairSearchRadius</xpath>
-       <value>
-           <chairSearchRadius>1</chairSearchRadius>
-       </value>
+        <xpath>/Defs/ThingDef[@Name="LunchMealBase"]/ingestible/chairSearchRadius</xpath>
+        <value>
+            <chairSearchRadius>1</chairSearchRadius>
+        </value>
     </Operation>
-    
     <!-- ==========================================================================================
         Set Cassandra storyteller to allow larger populations of about two to four dozen colonists 
     -->
@@ -71,7 +70,8 @@
         <xpath>*/StorytellerDef[defName = "Cassandra"]/populationIntentFromPopCurve</xpath>
         <value>
             <populationIntentFromPopCurve>
-                <points> <!-- {population, influence} -->
+                <points>
+                    <!-- {population, influence} -->
                     <li> 0, 12</li>
                     <li> 6,  8</li>
                     <li>12,  6</li>
@@ -80,8 +80,40 @@
                     <li>36, -2</li>
                     <li>50, -5</li>
                 </points>
-            </populationIntentFromPopCurve>            
-		</value>
-	</Operation>
-    
+            </populationIntentFromPopCurve>
+        </value>
+    </Operation>
+    <!-- ==========================================================================================
+        Add tile range to description of weapon ranges 
+        {Touch = 4 , Short = 15, Medium = 30, Long = 50}
+    -->
+    <Operation Class="PatchOperationSequence">
+        <success>Always</success>
+        <operations>
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/StatDef[defName="AccuracyTouch"]/label</xpath>
+                <value>
+                    <label>Accuracy - touch (4 tiles)</label>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/StatDef[defName="AccuracyShort"]/label</xpath>
+                <value>
+                    <label>Accuracy - short (15 tiles)</label>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/StatDef[defName="AccuracyMedium"]/label</xpath>
+                <value>
+                    <label>Accuracy - medium (30 tiles)</label>
+                </value>
+            </li>
+            <li Class="PatchOperationReplace">
+                <xpath>/Defs/StatDef[defName="AccuracyLong"]/label</xpath>
+                <value>
+                    <label>Accuracy - long (50 tiles)</label>
+                </value>
+            </li>
+        </operations>
+    </Operation>
 </Patch>
