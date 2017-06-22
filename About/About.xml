@@ -8,7 +8,6 @@
 
   &lt;b&gt;&lt;color=#8080F0&gt;Shelves&lt;/color&gt;&lt;/b&gt; - Set vanilla shelves to nothing allowed in storage when first constructed
   &lt;b&gt;&lt;color=#8080F0&gt;Allow Rotten&lt;/color&gt;&lt;/b&gt; - Set default to false for newly constructed containers
-  &lt;b&gt;&lt;color=#8080F0&gt;Eating at a table&lt;/color&gt;&lt;/b&gt; - Increased range to look for a table to 50 tiles
   &lt;b&gt;&lt;color=#8080F0&gt;Cassandra&lt;/color&gt;&lt;/b&gt; - Increased desired population to around two to four dozen colonists
   &lt;b&gt;&lt;color=#8080F0&gt;Weapon Range Info&lt;/color&gt;&lt;/b&gt; - Added tile range to the accuracy descriptions
     </description>
